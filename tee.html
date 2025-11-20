@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEE for Perfusion Students</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #ebf4ff 0%, #f3e7ff 100%);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #1e3a8a;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #4b5563;
+            font-size: 1.25rem;
+        }
+
+        .slide-content {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            min-height: 500px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        button:disabled {
+            background: #d1d5db;
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        button:not(:disabled) {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:not(:disabled):hover {
+            background: #1d4ed8;
+        }
+
+        .progress {
+            text-align: center;
+        }
+
+        .progress-text {
+            color: #4b5563;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .dots {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 9999px;
+            background: #d1d5db;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot:hover {
+            background: #9ca3af;
+        }
+
+        .dot.active {
+            background: #2563eb;
+            width: 2rem;
+        }
+
+        /* Slide Styling */
+        .box {
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .bg-blue { background: #dbeafe; }
+        .bg-gray { background: #f3f4f6; }
+        .bg-yellow { background: #fef3c7; }
+        .bg-green { background: #d1fae5; }
+        .bg-purple { background: #e9d5ff; }
+        .bg-red { background: #fee2e2; }
+        .bg-orange { background: #fed7aa; }
+        .bg-white { background: white; }
+
+        .border-red { border: 2px solid #ef4444; }
+        .border-gray { border: 2px solid #d1d5db; }
+
+        .text-xl { font-size: 1.25rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-sm { font-size: 0.875rem; }
+        .font-bold { font-weight: 700; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-4 { margin-top: 1rem; }
+        .space-y-3 > * + * { margin-top: 0.75rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .image-placeholder {
+            background: #f3f4f6;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 2px dashed #d1d5db;
+        }
+
+        .image-placeholder img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .text-center { text-align: center; }
+        .text-gray { color: #9ca3af; }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 id="slideTitle">TEE for Perfusionists</h1>
+            <p id="slideSubtitle">What You Need to Know</p>
+        </div>
+
+        <div class="slide-content" id="slideContent">
+            <!-- Content will be inserted here -->
+        </div>
+
+        <div class="navigation">
+            <button id="prevBtn" onclick="previousSlide()">
+                ← Previous
+            </button>
+
+            <div class="progress">
+                <p class="progress-text">
+                    Slide <span id="currentSlide">1</span> of <span id="totalSlides">14</span>
+                </p>
+                <div class="dots" id="dotsContainer"></div>
+            </div>
+
+            <button id="nextBtn" onclick="nextSlide()">
+                Next →
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+
+        const slides = [
+            {
+                title: "TEE for Perfusionists",
+                subtitle: "What You Need to Know",
+                content: `
+                    <div class="box bg-blue space-y-4">
+                        <p class="font-bold text-xl mb-3">Why Learn TEE?</p>
+                        <p>• See what's happening in real-time during your case</p>
+                        <p>• Understand what the anesthesiologist is seeing</p>
+                        <p>• Better communication with the surgical team</p>
+                        <p>• Helps you make better perfusion decisions</p>
+                    </div>
+                    <div class="box bg-gray">
+                        <p class="text-xl font-bold mb-2">Think of TEE as:</p>
+                        <p class="text-center text-xl">Your window into the heart during bypass</p>
+                    </div>
+                    <div class="box bg-yellow">
+                        <p class="font-bold">Your Role:</p>
+                        <p>You won't be controlling the probe, but you should understand what you're looking at on the monitor</p>
+                    </div>
+                `
+            },
+            {
+                title: "What Is TEE?",
+                subtitle: "The Ultra-Basics",
+                content: `
+                    <div class="box bg-blue space-y-4">
+                        <p class="font-bold text-xl mb-3">TEE = Transesophageal Echocardiography</p>
+                        <p class="mb-4">It's an ultrasound probe that goes down the esophagus</p>
+                        <div class="box bg-white">
+                            <p class="font-bold mb-2">Why through the esophagus?</p>
+                            <p>• It's right behind the heart - super close</p>
+                            <p>• No ribs or lungs in the way</p>
+                            <p>• Amazing picture quality</p>
+                            <p>• Can see everything during surgery</p>
+                        </div>
+                    </div>
+                    <div class="box bg-gray space-y-3">
+                        <p class="font-bold text-xl">Basic Parts:</p>
+                        <p><span class="font-bold">The Screen:</span> Shows live images of the heart</p>
+                        <p><span class="font-bold">The Probe:</span> Like a thick endoscope with ultrasound at the tip</p>
+                        <p><span class="font-bold">Controls:</span> Anesthesia uses these to move the probe and change angles</p>
+                    </div>
+                    <div class="box bg-green">
+                        <p class="font-bold">For You:</p>
+                        <p>Focus on recognizing the views and understanding what you're seeing, not how to drive the probe</p>
+                    </div>
+                `
+            },
+            {
+                title: "The 4 Main Views",
+                subtitle: "What You'll See Most Often",
+                content: `
+                    <div class="box bg-gray">
+                        <p class="text-xl font-bold mb-4">Know These 4 Views:</p>
+                        <div class="space-y-3">
+                            <div class="box bg-white">
+                                <p class="font-bold text-lg">1. Mid-Esophageal 4-Chamber (ME 4Ch) - 0°</p>
+                                <p>Shows all 4 chambers at once</p>
+                                <p class="text-sm text-gray mt-2">Most common view - you'll see this constantly</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold text-lg">2. Mid-Esophageal 2-Chamber (ME 2Ch) - 90°</p>
+                                <p>Left atrium and left ventricle</p>
+                                <p class="text-sm text-gray mt-2">Good for checking the left side</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold text-lg">3. Mid-Esophageal Long Axis (ME LAX) - 120°</p>
+                                <p>Shows the aortic valve and LVOT</p>
+                                <p class="text-sm text-gray mt-2">Critical for aortic cases</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold text-lg">4. Transgastric Short Axis (TG SAX) - 0°</p>
+                                <p>Looking up at the LV from below</p>
+                                <p class="text-sm text-gray mt-2">Best view for watching the heart pump</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box bg-blue">
+                        <p class="font-bold">The numbers (0°, 90°, 120°):</p>
+                        <p>That's the angle the probe is rotated to. Don't worry about this too much - just recognize the views</p>
+                    </div>
+                `
+            },
+            {
+                title: "ME 4-Chamber View",
+                subtitle: "Your Most Important View",
+                content: `
+                    <div class="box bg-blue">
+                        <p class="font-bold text-xl mb-3">What You See:</p>
+                        <p>• Right atrium (RA)</p>
+                        <p>• Right ventricle (RV)</p>
+                        <p>• Left atrium (LA)</p>
+                        <p>• Left ventricle (LV)</p>
+                        <p>• Mitral valve (between LA and LV)</p>
+                        <p>• Tricuspid valve (between RA and RV)</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <div class="image-placeholder">
+                            <img src="me4ch.jpg" alt="ME 4 Chamber View" onerror="this.style.display='none'; this.parentElement.innerHTML='<p class=text-gray text-lg>Add your ME 4Ch image: me4ch.jpg</p>'">
+                        </div>
+                        <p class="text-sm text-center text-gray">Tip: Left side of screen = Right side of heart</p>
+                    </div>
+                    <div class="box bg-green">
+                        <p class="font-bold text-lg mb-2">What You're Looking For:</p>
+                        <p>• Is the heart squeezing well?</p>
+                        <p>• Are the chambers the right size?</p>
+                        <p>• Any problems with the valves?</p>
+                        <p>• Is there air in the heart?</p>
+                    </div>
+                `
+            },
+            {
+                title: "TG Short Axis View",
+                subtitle: "The Perfusionist's Favorite",
+                content: `
+                    <div class="box bg-purple">
+                        <p class="font-bold text-xl mb-3">Why This View Matters to You:</p>
+                        <p class="text-lg mb-2">This is your monitoring view during bypass</p>
+                        <p>• See the LV pumping in real-time</p>
+                        <p>• Watch for wall motion problems (ischemia)</p>
+                        <p>• Best view for checking if heart is empty or full</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <div class="image-placeholder">
+                            <img src="tgsax.jpg" alt="TG Short Axis View" onerror="this.style.display='none'; this.parentElement.innerHTML='<p class=text-gray text-lg>Add your TG SAX image: tgsax.jpg</p>'">
+                        </div>
+                        <p class="text-sm text-center text-gray">Looks like a donut - LV in the middle, RV on the side</p>
+                    </div>
+                    <div class="box bg-blue space-y-3">
+                        <p class="font-bold text-lg">What Each Part Does:</p>
+                        <p><span class="font-bold">Anterior wall:</span> LAD territory</p>
+                        <p><span class="font-bold">Lateral wall:</span> Circumflex territory</p>
+                        <p><span class="font-bold">Inferior wall:</span> RCA territory</p>
+                        <p class="text-sm text-gray mt-2">If you see a wall stop moving = possible graft problem</p>
+                    </div>
+                `
+            },
+            {
+                title: "Before Going on Bypass",
+                subtitle: "What TEE Shows You",
+                content: `
+                    <div class="box bg-blue">
+                        <p class="font-bold text-xl mb-3">Pre-Bypass TEE Check:</p>
+                        <div class="space-y-3">
+                            <div class="box bg-white">
+                                <p class="font-bold">1. Baseline Function</p>
+                                <p>How well is the heart working before you start?</p>
+                                <p class="text-sm text-gray">Good, bad, terrible - you need to know</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold">2. Valve Problems</p>
+                                <p>How bad is the valve issue?</p>
+                                <p class="text-sm text-gray">Helps surgeon know what to expect</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold">3. Is There a Clot?</p>
+                                <p>Especially in the left atrium</p>
+                                <p class="text-sm text-gray">Critical to find before bypass</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold">4. Cannula Position</p>
+                                <p>Are the bypass cannulas in the right spot?</p>
+                                <p class="text-sm text-gray">Affects your flows and safety</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "During Bypass",
+                subtitle: "What You Should Watch",
+                content: `
+                    <div class="box bg-yellow">
+                        <p class="font-bold text-xl mb-3">While You're Running the Pump:</p>
+                        <div class="space-y-3">
+                            <div class="box bg-white">
+                                <p class="font-bold text-lg">Heart Should Be Still</p>
+                                <p>If it's moving = not enough cardioplegia</p>
+                                <p>If it's fibrillating = probably okay but mention it</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold text-lg">Watch for Distension</p>
+                                <p>LV getting too full = bad</p>
+                                <p class="text-sm text-gray">Means either: vent not working, aortic insufficiency, or non-coronary flow</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold text-lg">Check Your Cannulas</p>
+                                <p>If flows are weird, TEE can show malposition</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box bg-red">
+                        <p class="font-bold">Red Flag:</p>
+                        <p>If the LV starts filling up during bypass, tell the surgeon immediately</p>
+                    </div>
+                `
+            },
+            {
+                title: "Coming Off Bypass",
+                subtitle: "Critical TEE Information",
+                content: `
+                    <div class="box bg-blue">
+                        <p class="font-bold text-xl mb-3">Before You Wean:</p>
+                        <div class="space-y-3">
+                            <div class="box bg-white">
+                                <p class="font-bold text-lg">1. Get All the Air Out</p>
+                                <p>TEE shows air bubbles in the heart</p>
+                                <p class="text-sm text-gray">Don't come off until it's clear - massive stroke risk</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold text-lg">2. Check the Repair</p>
+                                <p>Did the valve surgery work?</p>
+                                <p class="text-sm text-gray">If not, you're going back on</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold text-lg">3. How's It Pumping?</p>
+                                <p>Is the heart strong enough to support itself?</p>
+                                <p class="text-sm text-gray">Weak heart = might need IABP or more inotropes</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box bg-green">
+                        <p class="font-bold">Your Role:</p>
+                        <p>If surgeon and anesthesia are concerned about function, be ready to go back on or support with balloon pump</p>
+                    </div>
+                `
+            },
+            {
+                title: "De-Airing",
+                subtitle: "TEE's Most Critical Job",
+                content: `
+                    <div class="box bg-red border-red">
+                        <p class="font-bold text-xl mb-3">This Is Super Important</p>
+                        <p class="text-lg mb-4">Air in the heart = stroke, MI, death</p>
+                        <div class="box bg-white space-y-2">
+                            <p class="font-bold">What Air Looks Like on TEE:</p>
+                            <p>• Bright white specks or clouds</p>
+                            <p>• Usually in the left ventricle or aorta</p>
+                            <p>• Swirls around when the heart beats</p>
+                        </div>
+                    </div>
+                    <div class="box bg-blue">
+                        <p class="font-bold text-lg mb-3">De-Airing Process:</p>
+                        <p>1. Surgeon puts vent in LV or aortic root</p>
+                        <p>2. You give them suction on the vent</p>
+                        <p>3. They manipulate the heart to get air to the vent</p>
+                        <p>4. TEE watches until all air is gone</p>
+                        <p class="mt-4 font-bold">Don't wean until anesthesia says air is clear</p>
+                    </div>
+                    <div class="box bg-yellow">
+                        <p class="font-bold">Pro Tip:</p>
+                        <p>Some tiny bubbles are okay, but any big collections need to come out</p>
+                    </div>
+                `
+            },
+            {
+                title: "Reading Heart Function",
+                subtitle: "Simple Assessment",
+                content: `
+                    <div class="box bg-gray">
+                        <p class="font-bold text-xl mb-4">Basic Categories:</p>
+                        <div class="space-y-3">
+                            <div class="box bg-green">
+                                <p class="font-bold text-lg">Good Function (Normal EF 55-70%)</p>
+                                <p>• Walls move in nicely</p>
+                                <p>• Good squeeze</p>
+                                <p>• Cavity gets smaller with each beat</p>
+                            </div>
+                            <div class="box bg-yellow">
+                                <p class="font-bold text-lg">Moderate Dysfunction (EF 35-54%)</p>
+                                <p>• Weaker squeeze</p>
+                                <p>• Still moves but not great</p>
+                                <p>• Might need some inotropes</p>
+                            </div>
+                            <div class="box bg-red">
+                                <p class="font-bold text-lg">Severe Dysfunction (EF under 35%)</p>
+                                <p>• Barely moving</p>
+                                <p>• Big floppy heart</p>
+                                <p>• Definitely needs inotropes, maybe IABP or ECMO</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box bg-blue">
+                        <p class="font-bold">For Perfusion:</p>
+                        <p>Bad function = harder time weaning, might need more support from you</p>
+                    </div>
+                `
+            },
+            {
+                title: "Common Problems on TEE",
+                subtitle: "What You Might See",
+                content: `
+                    <div class="space-y-3">
+                        <div class="box bg-red">
+                            <p class="font-bold text-lg">Wall Not Moving = Ischemia</p>
+                            <p>If you see a section of heart stop moving during the case:</p>
+                            <p>• Graft might be kinked or blocked</p>
+                            <p>• Could be air in the coronary</p>
+                            <p>• Needs immediate attention</p>
+                        </div>
+                        <div class="box bg-orange">
+                            <p class="font-bold text-lg">Heart Too Full on Bypass</p>
+                            <p>Distended LV during bypass means:</p>
+                            <p>• Vent not working</p>
+                            <p>• Aortic valve leaking</p>
+                            <p>• Blood going backwards through grafts</p>
+                            <p class="text-sm text-gray mt-2">Tell surgeon - might need to fix</p>
+                        </div>
+                        <div class="box bg-yellow">
+                            <p class="font-bold text-lg">Heart Empty = Hypovolemia</p>
+                            <p>"Kissing walls" means heart is bone dry</p>
+                            <p>• Need more volume from you</p>
+                            <p>• Or decrease venous return to pump</p>
+                        </div>
+                        <div class="box bg-blue">
+                            <p class="font-bold text-lg">Can't Wean = Poor Function</p>
+                            <p>If heart looks terrible on TEE:</p>
+                            <p>• IABP time</p>
+                            <p>• Maybe ECMO</p>
+                            <p>• Definitely high-dose inotropes</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "Valve Surgery Specifics",
+                subtitle: "What Changes for You",
+                content: `
+                    <div class="box bg-purple">
+                        <p class="font-bold text-xl mb-3">Mitral Valve Repair/Replacement:</p>
+                        <div class="space-y-2">
+                            <p><span class="font-bold">Before:</span> TEE shows how bad the leak is</p>
+                            <p><span class="font-bold">After:</span> Is there still a leak? Did the repair work?</p>
+                            <p class="text-sm text-gray">If repair failed, back on bypass to redo it</p>
+                        </div>
+                    </div>
+                    <div class="box bg-blue">
+                        <p class="font-bold text-xl mb-3">Aortic Valve Replacement:</p>
+                        <div class="space-y-2">
+                            <p><span class="font-bold">Before:</span> Check how tight it is</p>
+                            <p><span class="font-bold">After:</span> New valve working? Any leak around it?</p>
+                            <p class="text-sm text-gray">Paravalvular leak = surgeon needs to fix it</p>
+                        </div>
+                    </div>
+                    <div class="box bg-green">
+                        <p class="font-bold text-xl mb-3">Your Perfusion Considerations:</p>
+                        <p>• Valve cases = more de-airing needed</p>
+                        <p>• Left side opened = tons of air to remove</p>
+                        <p>• Might take longer to wean while checking repair</p>
+                        <p>• Be patient - can't rush air removal</p>
+                    </div>
+                `
+            },
+            {
+                title: "Communication",
+                subtitle: "Working with Anesthesia",
+                content: `
+                    <div class="box bg-blue">
+                        <p class="font-bold text-xl mb-3">Things Anesthesia Might Tell You:</p>
+                        <div class="space-y-3">
+                            <div class="box bg-white">
+                                <p class="font-bold">"Heart looks empty"</p>
+                                <p>→ Give them more volume or decrease venous drainage</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold">"LV is distending"</p>
+                                <p>→ Check the vent, might need more suction</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold">"Still seeing air"</p>
+                                <p>→ Keep venting, not ready to wean yet</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold">"Function looks terrible"</p>
+                                <p>→ Get ready for long wean, maybe IABP</p>
+                            </div>
+                            <div class="box bg-white">
+                                <p class="font-bold">"Cannula position looks off"</p>
+                                <p>→ Might explain weird flows or pressures</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box bg-green">
+                        <p class="font-bold">Your Questions to Ask:</p>
+                        <p>• "How does the heart look?"</p>
+                        <p>• "Do you see any air?"</p>
+                        <p>• "Is the LV distended?"</p>
+                        <p>• "What's the function like?"</p>
+                    </div>
+                `
+            },
+            {
+                title: "Summary",
+                subtitle: "Key Takeaways for Perfusionists",
+                content: `
+                    <div class="box bg-blue" style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); color: white;">
+                        <p class="font-bold mb-4" style="font-size: 2rem;">TEE: Your Window to the Heart</p>
+                        <div class="space-y-3 text-lg">
+                            <p>✓ TEE shows you what's happening in real-time</p>
+                            <p>✓ Watch the monitor - it guides your management</p>
+                            <p>✓ Air in the heart = emergency, don't rush weaning</p>
+                            <p>✓ Empty heart = need more volume</p>
+                            <p>✓ Full heart on bypass = problem with vent</p>
+                            <p>✓ Bad function = need more support</p>
+                            <p>✓ Wall stops moving = possible graft issue</p>
+                        </div>
+                    </div>
+                    <div class="box bg-yellow">
+                        <p class="font-bold text-xl mb-2">The Main Point:</p>
+                        <p class="text-lg">
+                            You don't need to be an expert at reading TEE, but understanding what anesthesia sees helps you anticipate problems and manage your pump better.
+                        </p>
+                    </div>
+                    <div class="box bg-white" style="text-align: center; padding: 2rem;">
+                        <p style="font-size: 1.5rem; color: #2563eb; font-weight: bold;">
+                            Questions? Ask your anesthesiologist to show you the views during your next case!
+                        </p>
+                    </div>
+                `
+            }
+        ];
+
+        function updateSlide() {
+            const slide = slides[currentSlide];
+            document.getElementById('slideTitle').textContent = slide.title;
+            document.getElementById('slideSubtitle').textContent = slide.subtitle;
+            document.getElementById('slideContent').innerHTML = slide.content;
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+            document.getElementById('totalSlides').textContent = slides.length;
+            
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === slides.length - 1;
+            
+            // Update dots
+            updateDots();
+        }
+
+        function updateDots() {
+            const dotsContainer = document.getElementById('dotsContainer');
+            dotsContainer.innerHTML = '';
+            
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (index === currentSlide ? ' active' : '');
+                dot.onclick = () => goToSlide(index);
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') previousSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+
+        // Initialize
+        updateSlide();
+    </script>
+</body>
+</html>
