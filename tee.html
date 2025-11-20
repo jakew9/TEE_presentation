@@ -399,7 +399,7 @@
 
             <div class="progress">
                 <p class="progress-text">
-                    Slide <span id="currentSlide">1</span> of <span id="totalSlides">14</span>
+                    Slide <span id="currentSlide">1</span> of <span id="totalSlides">26</span>
                 </p>
                 <div class="dots" id="dotsContainer"></div>
             </div>
@@ -511,7 +511,7 @@
                         <p>• Tricuspid valve (between RA and RV)</p>
                     </div>
                     <div class="box bg-white border-gray">
-                        <video controls style="width: 100%; max-height: 400px; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 400px; border-radius: 0.5rem; margin-bottom: 0.5rem;">
                             <source src="me4ch-recording.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -527,6 +527,63 @@
                 `
             },
             {
+                title: "ME 2-Chamber View",
+                subtitle: "Left Side Focus (90°)",
+                content: `
+                    <div class="box bg-blue">
+                        <p class="font-bold text-xl mb-3">What You See:</p>
+                        <p>• Left atrium (LA)</p>
+                        <p>• Left ventricle (LV)</p>
+                        <p>• Mitral valve (between LA and LV)</p>
+                        <p>• Anterior and inferior walls of the LV</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 400px; border-radius: 0.5rem; margin-bottom: 1rem;">
+                            <source src="ME 2 chamber 90.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <img src="Screenshot 2025-11-20 133019.png" alt="ME 2-Chamber Diagram" style="width: 100%; max-height: 300px; object-fit: contain; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                        <p class="text-sm text-center text-gray">ME 2-Chamber View (90°) - Shows the left side of the heart</p>
+                    </div>
+                    <div class="box bg-green">
+                        <p class="font-bold text-lg mb-2">Why This View Matters:</p>
+                        <p>• Great for checking mitral valve function</p>
+                        <p>• See the anterior and inferior LV walls</p>
+                        <p>• Good view for left atrial size</p>
+                    </div>
+                `
+            },
+            {
+                title: "ME Long Axis View",
+                subtitle: "Aortic Valve & LVOT (120°)",
+                content: `
+                    <div class="box bg-blue">
+                        <p class="font-bold text-xl mb-3">What You See:</p>
+                        <p>• Left ventricle (LV)</p>
+                        <p>• Left atrium (LA)</p>
+                        <p>• Aortic valve</p>
+                        <p>• Left ventricular outflow tract (LVOT)</p>
+                        <p>• Mitral valve</p>
+                        <p>• Ascending aorta</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 400px; border-radius: 0.5rem; margin-bottom: 1rem;">
+                            <source src="ME Long Axis.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <img src="Screenshot 2025-11-20 133408.png" alt="ME Long Axis Diagram" style="width: 100%; max-height: 300px; object-fit: contain; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                        <p class="text-sm text-center text-gray">ME Long Axis (120°) - Perfect view for aortic valve assessment</p>
+                    </div>
+                    <div class="box bg-purple">
+                        <p class="font-bold text-lg mb-2">Why This View Matters:</p>
+                        <p>• Best view for aortic valve function</p>
+                        <p>• Critical for aortic valve replacements</p>
+                        <p>• Shows LVOT obstruction</p>
+                        <p>• See both mitral and aortic valves together</p>
+                    </div>
+                `
+            },
+            {
                 title: "TG Short Axis View",
                 subtitle: "The Perfusionist's Favorite",
                 content: `
@@ -538,7 +595,7 @@
                         <p>• Best view for checking if heart is empty or full</p>
                     </div>
                     <div class="box bg-white border-gray">
-                        <video controls style="width: 100%; max-height: 400px; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 400px; border-radius: 0.5rem; margin-bottom: 1rem;">
                             <source src="TG LV View.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -551,6 +608,181 @@
                         <p><span class="font-bold">Lateral wall:</span> Circumflex territory</p>
                         <p><span class="font-bold">Inferior wall:</span> RCA territory</p>
                         <p class="text-sm text-gray mt-2">If you see a wall stop moving = possible graft problem</p>
+                    </div>
+                `
+            },
+            {
+                title: "Regional Wall Motion Abnormality",
+                subtitle: "Anterior Wall Ischemia",
+                content: `
+                    <div class="box bg-red border-red">
+                        <p class="font-bold text-xl mb-3">⚠️ Anterior Wall Not Moving</p>
+                        <p class="text-lg mb-2">This is a critical finding!</p>
+                        <p>• Anterior wall is akinetic (not moving)</p>
+                        <p>• LAD territory problem</p>
+                        <p>• Possible graft occlusion or kink</p>
+                        <p>• Could be air in coronary</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 450px; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                            <source src="Anterior Wall.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="text-sm text-center text-gray">TG Short Axis showing anterior wall motion abnormality - compare to the normal view</p>
+                    </div>
+                    <div class="box bg-orange">
+                        <p class="font-bold text-lg mb-2">Immediate Action Required:</p>
+                        <p>• Alert surgeon immediately</p>
+                        <p>• Check LAD graft if case is done</p>
+                        <p>• May need to go back on bypass</p>
+                        <p>• Look for kinks in grafts</p>
+                        <p>• Consider air embolism to coronary</p>
+                    </div>
+                `
+            },
+            {
+                title: "Regional Wall Motion Abnormality",
+                subtitle: "Inferior Wall Ischemia",
+                content: `
+                    <div class="box bg-red border-red">
+                        <p class="font-bold text-xl mb-3">⚠️ Inferior Wall Not Moving</p>
+                        <p class="text-lg mb-2">Another critical finding!</p>
+                        <p>• Inferior wall is akinetic (not moving)</p>
+                        <p>• RCA territory problem</p>
+                        <p>• Possible graft occlusion or kink</p>
+                        <p>• Could be air in coronary</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 450px; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                            <source src="Inferior wall.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="text-sm text-center text-gray">TG Short Axis showing inferior wall motion abnormality - RCA territory</p>
+                    </div>
+                    <div class="box bg-orange">
+                        <p class="font-bold text-lg mb-2">Immediate Action Required:</p>
+                        <p>• Alert surgeon immediately</p>
+                        <p>• Check RCA graft if case is done</p>
+                        <p>• May need to go back on bypass</p>
+                        <p>• Look for kinks in grafts</p>
+                        <p>• Consider air embolism to coronary</p>
+                    </div>
+                `
+            },
+            {
+                title: "Aortic Stenosis",
+                subtitle: "Valve Pathology Example",
+                content: `
+                    <div class="box bg-purple">
+                        <p class="font-bold text-xl mb-3">Aortic Stenosis on TEE</p>
+                        <p class="text-lg mb-2">What you're seeing:</p>
+                        <p>• Thickened, calcified aortic valve leaflets</p>
+                        <p>• Restricted valve opening</p>
+                        <p>• Narrow valve orifice</p>
+                        <p>• Often see LV hypertrophy (thick walls)</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 450px; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                            <source src="aortic stenosis.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="text-sm text-center text-gray">Aortic stenosis - notice the restricted valve opening</p>
+                    </div>
+                    <div class="box bg-blue">
+                        <p class="font-bold text-lg mb-2">Perfusion Considerations:</p>
+                        <p>• These patients may have thick, stiff ventricles</p>
+                        <p>• Need good cardioplegia delivery</p>
+                        <p>• May be difficult to wean after valve replacement</p>
+                        <p>• Watch for LV distension on bypass (AI can develop)</p>
+                        <p>• TEE will check new valve function after replacement</p>
+                    </div>
+                `
+            },
+            {
+                title: "Aortic Regurgitation",
+                subtitle: "Leaky Aortic Valve",
+                content: `
+                    <div class="box bg-red">
+                        <p class="font-bold text-xl mb-3">Aortic Regurgitation (AI/AR)</p>
+                        <p class="text-lg mb-2">Blood flowing backwards through aortic valve</p>
+                        <p>• Valve doesn't close properly</p>
+                        <p>• Blood leaks back into LV during diastole</p>
+                        <p>• Can see the regurgitant jet on color Doppler</p>
+                        <p>• LV often dilated from volume overload</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 450px; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                            <source src="AR.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="text-sm text-center text-gray">Aortic regurgitation - notice the regurgitant jet flowing back into the LV</p>
+                    </div>
+                    <div class="box bg-yellow">
+                        <p class="font-bold text-lg mb-2">Critical for Perfusion:</p>
+                        <p>• <span class="font-bold">On bypass:</span> LV will distend if significant AI present</p>
+                        <p>• Blood flows backwards from aorta into LV</p>
+                        <p>• Vent must be working well</p>
+                        <p>• May need direct LV vent</p>
+                        <p>• Watch LV size on TEE during bypass carefully</p>
+                    </div>
+                `
+            },
+            {
+                title: "Intracardiac Clot",
+                subtitle: "Critical Pre-Bypass Finding",
+                content: `
+                    <div class="box bg-red border-red">
+                        <p class="font-bold text-xl mb-3">🚨 CLOT IN THE HEART</p>
+                        <p class="text-lg mb-2">This MUST be found before bypass!</p>
+                        <p>• Usually in left atrium or left atrial appendage</p>
+                        <p>• Appears as a dense mass</p>
+                        <p>• Can be mobile or attached</p>
+                        <p>• MASSIVE stroke risk if dislodged</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 450px; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                            <source src="Clot.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="text-sm text-center text-gray">Intracardiac clot - notice the dense echogenic mass</p>
+                    </div>
+                    <div class="box bg-orange">
+                        <p class="font-bold text-lg mb-2">What Happens:</p>
+                        <p>• Case may be cancelled or modified</p>
+                        <p>• Surgeon may remove clot during surgery</p>
+                        <p>• Different surgical approach may be needed</p>
+                        <p>• This is why pre-bypass TEE is so important</p>
+                        <p>• Finding it saves the patient from a stroke</p>
+                    </div>
+                `
+            },
+            {
+                title: "Cardiac Tamponade",
+                subtitle: "Emergency Diagnosis",
+                content: `
+                    <div class="box bg-red border-red">
+                        <p class="font-bold text-xl mb-3">🚨 TAMPONADE - LIFE THREATENING</p>
+                        <p class="text-lg mb-2">Blood or fluid in pericardial sac compressing heart</p>
+                        <p>• Pericardial effusion visible</p>
+                        <p>• Heart chambers are compressed</p>
+                        <p>• Right atrium/ventricle collapse in diastole</p>
+                        <p>• Impaired cardiac filling</p>
+                        <p>• Hemodynamic collapse</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 450px; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                            <source src="Tamponade.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="text-sm text-center text-gray">Cardiac tamponade - note the pericardial effusion and compressed chambers</p>
+                    </div>
+                    <div class="box bg-orange">
+                        <p class="font-bold text-lg mb-2">Emergency Response:</p>
+                        <p>• Immediate surgical drainage needed</p>
+                        <p>• In post-op: back to OR for re-exploration</p>
+                        <p>• TEE makes the diagnosis quickly</p>
+                        <p>• Volume and pressors temporize until drained</p>
+                        <p>• Can happen post-op from bleeding</p>
                     </div>
                 `
             },
@@ -733,6 +965,120 @@
                             <p>• Maybe ECMO</p>
                             <p>• Definitely high-dose inotropes</p>
                         </div>
+                    </div>
+                `
+            },
+            {
+                title: "TG Short Axis - Low EF Example",
+                subtitle: "Severe Dysfunction Comparison",
+                content: `
+                    <div class="box bg-red">
+                        <p class="font-bold text-xl mb-3">Severe Dysfunction (Very Low EF)</p>
+                        <p class="text-lg mb-2">Compare this to the previous normal view</p>
+                        <p>• Barely moving walls</p>
+                        <p>• Big, dilated ventricle</p>
+                        <p>• Poor contractility</p>
+                        <p>• Will need significant support</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 450px; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                            <source src="LOW EF.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="text-sm text-center text-gray">TG Short Axis showing severely reduced ejection fraction</p>
+                    </div>
+                    <div class="box bg-yellow">
+                        <p class="font-bold text-lg mb-2">What This Means for Perfusion:</p>
+                        <p>• Expect difficult wean from bypass</p>
+                        <p>• High-dose inotropes needed</p>
+                        <p>• IABP likely required</p>
+                        <p>• Maybe Impella or ECMO</p>
+                        <p>• Prolonged bypass time</p>
+                    </div>
+                `
+            },
+            {
+                title: "TG Short Axis - Hypovolemia",
+                subtitle: "Heart Too Empty",
+                content: `
+                    <div class="box bg-yellow">
+                        <p class="font-bold text-xl mb-3">Low Volume / "Kissing Walls"</p>
+                        <p class="text-lg mb-2">When the heart is bone dry</p>
+                        <p>• Ventricular walls touch each other</p>
+                        <p>• Chamber is nearly obliterated</p>
+                        <p>• Heart is severely underfilled</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 450px; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                            <source src="Low Volume TG.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="text-sm text-center text-gray">TG Short Axis showing severe hypovolemia with kissing walls</p>
+                    </div>
+                    <div class="box bg-blue">
+                        <p class="font-bold text-lg mb-2">What To Do:</p>
+                        <p>• Give more volume to the patient</p>
+                        <p>• Decrease venous drainage to pump if on bypass</p>
+                        <p>• Check for bleeding</p>
+                        <p>• May need blood products</p>
+                    </div>
+                `
+            },
+            {
+                title: "Mitral Regurgitation",
+                subtitle: "Leaky Mitral Valve",
+                content: `
+                    <div class="box bg-purple">
+                        <p class="font-bold text-xl mb-3">Mitral Regurgitation (MR)</p>
+                        <p class="text-lg mb-2">Blood flowing backwards through mitral valve</p>
+                        <p>• Valve doesn't close properly during systole</p>
+                        <p>• Blood leaks from LV back into LA</p>
+                        <p>• See regurgitant jet on color Doppler</p>
+                        <p>• LA often dilated from volume overload</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 450px; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                            <source src="MV Regurge.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="text-sm text-center text-gray">Mitral regurgitation - notice the regurgitant jet flowing back into the LA</p>
+                    </div>
+                    <div class="box bg-blue">
+                        <p class="font-bold text-lg mb-2">Perfusion Considerations:</p>
+                        <p>• Common reason for mitral valve repair/replacement</p>
+                        <p>• TEE grades severity before surgery</p>
+                        <p>• After repair: TEE checks if leak is fixed</p>
+                        <p>• If repair fails, back on bypass for replacement</p>
+                        <p>• Watch for residual MR after coming off bypass</p>
+                    </div>
+                `
+            },
+            {
+                title: "Mitral Valve Prolapse",
+                subtitle: "Floppy Mitral Valve",
+                content: `
+                    <div class="box bg-purple">
+                        <p class="font-bold text-xl mb-3">Mitral Valve Prolapse (MVP)</p>
+                        <p class="text-lg mb-2">Valve leaflets bulge back into left atrium</p>
+                        <p>• Leaflets are too long or floppy</p>
+                        <p>• Prolapse into LA during systole</p>
+                        <p>• Often causes mitral regurgitation</p>
+                        <p>• Can see the leaflets "bowing" backwards</p>
+                    </div>
+                    <div class="box bg-white border-gray">
+                        <video controls autoplay loop muted style="width: 100%; max-height: 450px; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                            <source src="MV prolapse.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="text-sm text-center text-gray">Mitral valve prolapse - see the leaflets bulging back into the LA</p>
+                    </div>
+                    <div class="box bg-green">
+                        <p class="font-bold text-lg mb-2">Why This Matters:</p>
+                        <p>• Most common reason for mitral valve repair</p>
+                        <p>• Surgeon will reshape/tighten the valve</p>
+                        <p>• TEE shows which leaflet(s) are prolapsing</p>
+                        <p>• Guides surgical repair strategy</p>
+                        <p>• Post-repair TEE confirms leaflets are fixed</p>
                     </div>
                 `
             },
